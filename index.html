@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Flicker Demo</title>
+	<meta charset=utf-8>
+	<meta name=description content="">
+	<meta name=viewport content="width=device-width, initial-scale=1">
+	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600' rel='stylesheet' type='text/css' />
+	<link rel="stylesheet" type="text/css" href="/dist/styles.css" />
+</head>
+<body>
+	<div class="app">
+		<div class="tags">Tags</div>
+		<ul class="images" id="images">
+		</ul>
+	</div>
+	<script src="/dist/all.lib.min.js"></script>
+	<script src="/dist/templates.min.js"></script>
+	<script src="/dist/all.min.js"></script>
+	<script type="text/javascript">
+		window.controller = new Controller();
+		initRoutes();
+	</script>
+</body>
+</html>

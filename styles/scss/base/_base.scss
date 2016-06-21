@@ -1,0 +1,29 @@
+html,body, #wrapper{
+	width: 100%;
+	overflow: auto;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 12px;
+	-webkit-font-smoothing: antialiased;
+
+}
+body {
+	background: $background;
+	font-weight: $font-regular;
+}
+
+
+b{
+	font-family: $font-bold;
+	font-weight: normal;
+}
+
+/* IE Fix for tap delay and webkit tap highlight fix */
+
+a, label, input, button{
+	-ms-touch-action: manipulation;
+	-webkit-tap-highlight-color:rgba(0,0,0,0);
+}
+* {
+		-webkit-font-smoothing: antialiased;
+		text-shadow: 1px 1px 1px rgba(0,0,0,.004);
+}

@@ -1,0 +1,78 @@
+@mixin perspective($perspective) {
+	-moz-perspective: $perspective;
+	-ms-perspective: $perspective;
+	-webkit-perspective: $perspective;
+	perspective: $perspective;
+}
+
+@mixin transform ($transforms) {
+	-moz-transform: $transforms;
+	-o-transform: $transforms;
+	-ms-transform: $transforms;
+	-webkit-transform: $transforms;
+	transform: $transforms;
+}
+
+@mixin rotate ($deg) {
+	@include transform(rotate(#{$deg}deg));
+}
+
+@mixin scale ($size) {
+	@include transform(scale(#{$size}));
+}
+
+@mixin translate ($x, $y) {
+	@include transform(translate($x, $y));
+}
+
+@mixin transition ($value) {
+	-moz-transition: $value;
+	-o-transition: $value;
+	-ms-transition: $value;
+	-webkit-transition: $value;
+	transition: $value;
+}
+
+// Vendor Prefixer
+@mixin vendor-prefix($name, $argument) {
+	-webkit-#{$name}: #{$argument};
+	-ms-#{$name}: #{$argument};
+	-moz-#{$name}: #{$argument};
+	-o-#{$name}: #{$argument};
+	#{$name}: #{$argument};
+}
+
+@mixin box-shadow($top, $left, $blur, $color, $inset: false) {
+	@if $inset {
+		-webkit-box-shadow:inset $top $left $blur $color;
+		-moz-box-shadow:inset $top $left $blur $color;
+		box-shadow:inset $top $left $blur $color;
+	} @else {
+		-webkit-box-shadow: $top $left $blur $color;
+		-moz-box-shadow: $top $left $blur $color;
+		box-shadow: $top $left $blur $color;
+	}
+}
+@mixin no-box-shadow() {
+	-webkit-box-shadow:none;
+	-moz-box-shadow:none;
+	box-shadow:none;
+}
+@mixin input{
+	border: none;
+	//outline: 1px solid $light2;
+	font-family: $font-regular;
+	@include no-box-shadow();
+	-webkit-appearance: none;
+	-moz-appearance: none;
+
+	&.error{
+		outline: 1px solid $wrong;
+		background: rgba(244, 67, 54, 0.05);
+	}
+}
+@mixin calc($property, $expression) {
+	#{$property}: -webkit-calc(#{$expression});
+	#{$property}: -moz-calc(#{$expression});
+	#{$property}: calc(#{$expression});
+}

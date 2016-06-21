@@ -1,0 +1,60 @@
+body{
+	min-width: 620px;
+}
+
+.center{
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	@include translate(-50%, -50%);
+}
+.tags{
+	padding: 15px;
+	span{
+		cursor: pointer;
+		margin: 4px;
+		font-size: 15px;
+		text-decoration: none;
+		background: none;
+		@include transition(all 0.3s ease-in-out);
+		&:hover{
+			text-decoration: underline;
+			background: $theme;
+		}
+	}
+}
+.images{
+	display: inline-block;
+	width: 100%;
+	min-height: 800px;
+}
+.thumb{
+	float: left;
+	margin: 5px;
+	padding: 5px;
+	border: 1px solid $faded;
+	@include calc(width, "20% - 10px");
+	background-color: $faded1;
+	min-width: 110px;
+	.image{
+		position: relative;
+		height: 150px;
+		background-color: $faded2;
+		img{
+			max-width: 100px;
+			max-height: 100px;
+			height: auto;
+			width: auto;
+			@extend .center;
+			opacity: 1;
+			@include transition(opacity 0.7s ease-in);
+			&[data-src]{
+				opacity: 0;
+			}
+		}
+	}
+	.details{
+		height: 50px;
+		overflow: hidden;
+	}
+}
