@@ -49,9 +49,9 @@ gulp.task('buildtpl', function(){
 
 gulp.task('buildjs', function(){
 	return gulp.src([paths.js.file])
-		/*.pipe(uglify(uglifyConfigs).on('error', function(e){
+		.pipe(uglify(uglifyConfigs).on('error', function(e){
 			console.log(e);
-		}))*/
+		}))
 		.pipe(concat('all.min.js'))
 		.pipe(gulp.dest('dist/'));
 });
