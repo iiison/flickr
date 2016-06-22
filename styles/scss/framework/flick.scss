@@ -36,6 +36,11 @@ body{
 	@include calc(width, "20% - 10px");
 	background-color: $faded1;
 	min-width: 110px;
+	min-height: auto;
+	&.center{
+		position: static;
+		@include translate(0, 0);
+	}
 	.image{
 		position: relative;
 		height: 150px;

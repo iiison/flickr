@@ -16,5 +16,12 @@ var Model = new Stapes.subclass({
 			url: url,
 			type: 'GET'
 		});
+	},
+	getImagesByTags: function (obj) {
+		var url = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=" + obj.api + "&tags=" + obj.tag + "&format=json&nojsoncallback=1&extras=tags&per_page="+ obj.count +"&page="+ obj.page;
+		return $.ajax({
+			url: url,
+			type: 'GET'
+		});
 	}
 });

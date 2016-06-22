@@ -87,7 +87,7 @@ var View = new Stapes.subclass({
 	 */
 	render: function (data) {
 		// Don't clean up the image container if page is greater than 1
-		var append = data.page > 1 ? true : false;
+		var append = (data.page > 1) ? true : false;
 
 		// [renderTpl] is present in `render.js` file, utility to render
 		// handlebars template
@@ -101,13 +101,17 @@ var View = new Stapes.subclass({
 		this.updateTags();
 
 		// filter if tag is clicked
-		this.handleThumbs(this.get('filter'));
+		if(!data.isTagSearch){
+			this.handleThumbs(this.get('filter'));
+		}
 	},
 
 	// Binds DOM events
 	bindEvents: function(){
 		var that = this;
 		$(".tags").on("click", "span", function (e) {
+			that.set("tags", {});
+			that.set("page", 1);
 			that.handleThumbs($(this).html());
 		});
 		$(window).scroll(function () {
@@ -115,7 +119,7 @@ var View = new Stapes.subclass({
 			if(!that.get('newtwork') && that.get('page') < 68){
 				// If Second last row  shows up on the screen, AJAX will be Fired
 				if(($(window).scrollTop() + $(window).height()) > ($('.tags').outerHeight() + $(".images").outerHeight() - 450)){
-					that.emit('renderThumbs');
+					that.emit('renderThumbs', that.get("filter"));
 				}
 			}
 		});
@@ -144,7 +148,9 @@ var View = new Stapes.subclass({
 
 			$thumbs.hide();
 			$thumbs.filter("." + tag).show();
+			console.log($thumbs.filter("." + tag).length);
 			that.set("filter", tag);
+			that.emit('renderThumbs', tag);
 		}
 	}
 });

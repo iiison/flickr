@@ -48,18 +48,32 @@
 				 * later on it will be emited by [View], when user scrolls down
 				 * @return {[type]} [description]
 				 */
-				renderThumbs: function () {
-					var viewData = that.view.getAll();
-					var imagesXHR = that.model.getLandingPageViewData({
-						page: viewData.page,
-						api: viewData.api,
-						count: viewData.pageSize
-					});
+				renderThumbs: function (tag) {
+					var viewData = that.view.getAll(),
+						obj, imagesXHR;
+
+					if(!!!tag){
+						obj = {
+							page: viewData.page,
+							api: viewData.api,
+							count: viewData.pageSize
+						};
+						imagesXHR = that.model.getLandingPageViewData(obj);
+					}else{
+						obj = {
+							page: viewData.page,
+							api: viewData.api,
+							count: viewData.pageSize,
+							tag: tag
+						};
+						imagesXHR = that.model.getImagesByTags(obj);
+					}
 					that.view.set('newtwork', true);
 
 					$.when(imagesXHR).done(function (response) {
 						if(response && response.stat === "ok"){
 							that.view.set('page', (response.photos.page + 1));
+							response.photos.isTagSearch = !!tag ? true : false;
 							that.view.render.call(that.view, response.photos);
 						}
 					});
